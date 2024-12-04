@@ -27,15 +27,19 @@ int main() {
           for (k=kk; k < kk + blockingFactor; k++) {
             INST_R(b[i][k]);
             printf("INST_R(b[%d][%d])\n", i, k); //Sample Instrumentation and Printf.
-	INST_R(c[k][j]);
+
+            INST_R(c[k][j]);
 	printf("INST_R(c[%d][%d])\n",k,j);
 
             r += b[i][k] * c[k][j];
           }
-	INST_R(a[i][j]);
+
+INST_R(a[i][j]);
 	printf("INST_R(a[%d][%d])\n",i,j);
 	INST_W(a[i][j]);
-	printf("INST_W(a[%d][%d])\n",i,j);	
+	printf("INST_W(a[%d][%d])\n",i,j);
+
+
           a[i][j] = a[i][j] + r;
 
         }
@@ -44,5 +48,7 @@ int main() {
     kk = 0;
     jj += blockingFactor;
   }
-      return 0;
+
+  return 0;
+  // Display the product
 }
